@@ -83,6 +83,7 @@ char	*ft_strdup(const char *s1)
 	char	*duplicated;
 	size_t	len;
 
+
 	index = 0;
 	len = ft_strlen(s1);
 	duplicated = (char *)malloc(sizeof(char) * (len + 1));

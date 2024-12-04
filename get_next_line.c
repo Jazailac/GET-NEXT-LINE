@@ -1,11 +1,5 @@
 #include "get_next_line.h"
 
-void free_ptr(char *ptr)
-{
-	free(ptr);
-	ptr = NULL;
-}
-
 char *final_line(char *remainder, char *line)
 {
     line = ft_strdup(remainder);
@@ -48,7 +42,7 @@ char *extract_line(char *remainder)
     index = 0;
     line = (char *)malloc(sizeof(char) * (newline_index + 1));
     if (!line)
-        return (free_ptr(line), NULL);
+        return (free(line), NULL);
     while (index <= newline_index)
     {
         line[index] = remainder[index];
