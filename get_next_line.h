@@ -1,21 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jazailac <jazailac@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 08:59:06 by amait-ou          #+#    #+#             */
+/*   Updated: 2024/12/15 02:24:23 by jazailac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
-#endif
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-char    *ft_substr(const char *s, unsigned int start, size_t len);
-char    *ft_strjoin(const char *s1, const char *s2);
-char    *ft_strdup(const char *s1);
-void    *ft_memcpy(void *dst, const void *src, size_t n);
-size_t  ft_strlen(const char *s);
-int     find_newline(char *read);
-char    *update_remainder(char *remainder, char *line);
-char    *get_next_line(int fd);
+char	*ft_strchr(char*s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*get_next_line(int fd);
+char	*get_one_line(char *r);
+char	*free_remainder(char *reserve);
+size_t	ft_strlen(char *s);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 #endif

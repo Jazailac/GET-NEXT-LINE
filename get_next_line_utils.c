@@ -1,125 +1,115 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jazailac <jazailac@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/14 21:26:21 by jazailac          #+#    #+#             */
+/*   Updated: 2024/12/15 02:25:11 by jazailac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-#include <stdio.h>
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+size_t	ft_strlen(char *s)
 {
-	size_t	s_len;
-	size_t	substr_len;
-	char	*substr;
+	size_t	i;
 
-	substr_len = 0;
 	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= ft_strlen(s))
-	{
-		substr = malloc(1);
-		if (!substr)
-			return (NULL);
-		substr[0] = '\0';
-		return (substr); 
-	}
-	substr_len = len;
-	if (substr_len + start >= s_len)
-		substr_len = s_len - start;
-	substr = malloc(sizeof(char) * (substr_len + 1));
-	if (!substr)
-		return (NULL);
-	ft_memcpy(substr, s + start, substr_len);
-	substr[substr_len] = '\0';
-	return (substr);
+		return (0);
+	i = 0;
+	while (s[i])
+		++i;
+	return (i);
 }
 
-int find_newline(char *str)
+char	*ft_strchr(char *s, int c)
 {
-	int	i;
+	char	*p;
 
+	if (!s)
+		return (0);
+	p = (char *)s;
+	while (*p && *p != (char)c)
+		++p;
+	if (*p == (char)c)
+		return (p);
+	return ((void *)0);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	char	*p;
+
+	p = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!p)
+		return ((void *)0);
 	i = 0;
-	while (str[i])
+	j = 0;
+	while (s1 && s1[i])
 	{
-		if (str[i] == '\n')
-			return (i);
+		p[i] = s1[i];
+		++i;
+	}
+	while (s2[j])
+		p[i++] = s2[j++];
+	p[i] = '\0';
+	free(s1);
+	return (p);
+}
+
+char	*get_one_line(char *remainder)
+{
+	char	*line;
+	int		i;
+
+	if (!remainder)
+		return (NULL);
+	i = 0;
+	while (remainder[i] && remainder[i] != '\n')
+		++i;
+	line = malloc(i + 2);
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (remainder[i] && remainder[i] != '\n')
+	{
+		line[i] = remainder[i];
 		i++;
 	}
-	return (-1);
+	if (remainder[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
 
-size_t	ft_strlen(const char *s)
+char	*free_remainder(char *remainder)
 {
-	size_t	index;
+	char	*new_remainder;
+	int		i;
+	int		j;
 
-	index = 0;
-	while (s[index])
-	{
-		index++;
-	}
-	return (index);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	unsigned char		*d;
-	unsigned char		*s;
-	size_t				index;
-
-	if (!src && !dst)
-		return (dst);
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	if (s == d)
-		return (dst);
-	index = 0;
-	while (index < n)
-	{
-		d[index] = s[index];
-		index++;
-	}
-	return (dst);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	index;
-	char	*duplicated;
-	size_t	len;
-
-
-	index = 0;
-	len = ft_strlen(s1);
-	duplicated = (char *)malloc(sizeof(char) * (len + 1));
-	if (!duplicated)
+	if (!remainder)
 		return (NULL);
-	while (s1[index])
+	i = 0;
+	j = 0;
+	while (remainder[i] != '\n' && remainder[i])
+		++i;
+	if (!remainder[i] || (remainder[i] == '\n' && remainder[i + 1] == '\0'))
 	{
-		duplicated[index] = s1[index];
-		index++;
+		free(remainder);
+		return (NULL);
 	}
-	duplicated[index] = '\0';
-	return (duplicated);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
-{
-	size_t			index;
-	char			*str;
-
-	if (!s2 && !s1)
-		return (NULL);
-	if (!s1 && s2)
-		return (ft_strdup(s2));
-	if (!s2 && s1)
-		return (ft_strdup(s1));
-	index = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (!str)
-		return (NULL);
-	while (s1[index])
+	new_remainder = malloc((ft_strlen(remainder) - i));
+	if (new_remainder)
 	{
-		str[index] = s1[index];
-		index++;
+		while (remainder[++i])
+			new_remainder[j++] = remainder[i];
+		new_remainder[j] = '\0';
 	}
-	while (*s2)
-		str[index++] = *s2++;
-	str[index] = '\0';
-	return (str);
+	free(remainder);
+	return (new_remainder);
 }
