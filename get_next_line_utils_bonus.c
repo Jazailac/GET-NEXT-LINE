@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jazailac <jazailac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 21:26:21 by jazailac          #+#    #+#             */
-/*   Updated: 2024/12/15 23:47:56 by jazailac         ###   ########.fr       */
+/*   Created: 2024/12/15 23:46:03 by jazailac          #+#    #+#             */
+/*   Updated: 2024/12/16 00:16:11 by jazailac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -46,7 +46,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	p = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!p)
-		return (NULL);
+		return ((void *)0);
 	i = 0;
 	j = 0;
 	while (s1 && s1[i])
