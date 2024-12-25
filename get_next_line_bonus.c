@@ -6,14 +6,11 @@
 /*   By: jazailac <jazailac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 23:45:58 by jazailac          #+#    #+#             */
-/*   Updated: 2024/12/16 00:20:59 by jazailac         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:28:40 by jazailac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <sys/syslimits.h>
 
 char	*get_remainder(int fd, char *remainder)
 {

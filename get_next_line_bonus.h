@@ -6,7 +6,7 @@
 /*   By: jazailac <jazailac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 23:46:01 by jazailac          #+#    #+#             */
-/*   Updated: 2024/12/16 00:16:08 by jazailac         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:29:01 by jazailac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 char	*ft_strchr(char*s, int c);
 char	*ft_strjoin(char *s1, char *s2);

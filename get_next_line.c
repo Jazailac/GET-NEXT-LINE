@@ -6,7 +6,7 @@
 /*   By: jazailac <jazailac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 08:58:43 by amait-ou          #+#    #+#             */
-/*   Updated: 2024/12/15 02:24:09 by jazailac         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:26:32 by jazailac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ char	*get_next_line(int fd)
 	remainder = free_remainder(remainder);
 	return (line);
 }
-
